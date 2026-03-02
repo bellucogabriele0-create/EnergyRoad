@@ -1,5 +1,6 @@
 package gabrielebelluco.EnergyRoad.entities;
 
+import gabrielebelluco.EnergyRoad.ENUMS.RoleType;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -12,16 +13,18 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID roleId;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
     public Role() {
     }
 
-    public Role(UUID roleId, String type, Set<User> users) {
+
+    public Role(UUID roleId, RoleType roleType, Set<User> users) {
         this.roleId = roleId;
-        this.type = type;
+        this.roleType = roleType;
         this.users = users;
     }
 
@@ -33,19 +36,23 @@ public class Role {
         this.users = users;
     }
 
-    public String getType() {
-        return type;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
+    public UUID getRoleId() {
+        return roleId;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "roleId=" + roleId +
-                ", type='" + type + '\'' +
+                ", type='" + roleType + '\'' +
                 '}';
     }
 }

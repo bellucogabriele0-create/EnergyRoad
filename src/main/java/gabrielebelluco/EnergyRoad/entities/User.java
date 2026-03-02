@@ -91,7 +91,7 @@ public class User {
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        avatarUrl = avatarUrl;
+        this.avatarUrl = avatarUrl;
     }
 
     public LocalDate getCreatedAt() {
@@ -125,7 +125,6 @@ public class User {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", createdAt=" + createdAt +
                 ", orders=" + orders +
                 ", investments=" + investments +
