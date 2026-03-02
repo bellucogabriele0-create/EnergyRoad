@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EnergyRoadApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EnergyRoadApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EnergyRoadApplication.class, args);
+   
+    }
 
 }

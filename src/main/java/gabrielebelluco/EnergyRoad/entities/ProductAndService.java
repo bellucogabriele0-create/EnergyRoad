@@ -1,0 +1,78 @@
+package gabrielebelluco.EnergyRoad.entities;
+
+import jakarta.persistence.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "product_and_services")
+public class ProductAndService {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID productAndServiceId;
+    private String name;
+    private String description;
+    private Double price;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private ProductCategory category;
+
+    public ProductAndService() {
+    }
+
+    public ProductAndService(UUID productAndServiceId, String name, String description, Double price, ProductCategory category) {
+        this.productAndServiceId = productAndServiceId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+    }
+
+
+    public UUID getProductAndServiceId() {
+        return productAndServiceId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductAndService{" +
+                "productAndServiceId=" + productAndServiceId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                '}';
+    }
+}
