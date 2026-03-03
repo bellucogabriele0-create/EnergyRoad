@@ -39,8 +39,6 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             String id = jwtUtils.extractIdFromToken(token);
             User user = userService.getById(UUID.fromString(id));
-
-            // dico a Spring Security chi è l'utente
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     user, null, user.getAuthorities()
             );
