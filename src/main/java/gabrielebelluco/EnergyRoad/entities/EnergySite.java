@@ -1,7 +1,7 @@
 package gabrielebelluco.EnergyRoad.entities;
 
-import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteStatus;
-import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteType;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

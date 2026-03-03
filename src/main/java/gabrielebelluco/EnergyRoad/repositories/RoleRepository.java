@@ -1,6 +1,6 @@
-package gabrielebelluco.EnergyRoad.Repositories;
+package gabrielebelluco.EnergyRoad.repositories;
 
-import gabrielebelluco.EnergyRoad.ENUMS.RoleType;
+import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

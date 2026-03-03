@@ -1,6 +1,6 @@
 package gabrielebelluco.EnergyRoad.entities;
 
-import gabrielebelluco.EnergyRoad.ENUMS.OrderStatus;
+import gabrielebelluco.EnergyRoad.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

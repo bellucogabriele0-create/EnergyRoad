@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.Exceptions;
+package gabrielebelluco.EnergyRoad.exceptions;
 
 import java.util.List;
 

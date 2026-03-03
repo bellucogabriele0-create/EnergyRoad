@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.Payloads;
+package gabrielebelluco.EnergyRoad.payloads;
 
 import java.time.LocalDateTime;
 

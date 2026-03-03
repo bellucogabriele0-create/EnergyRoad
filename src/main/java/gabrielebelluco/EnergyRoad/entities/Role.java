@@ -1,6 +1,6 @@
 package gabrielebelluco.EnergyRoad.entities;
 
-import gabrielebelluco.EnergyRoad.ENUMS.RoleType;
+import gabrielebelluco.EnergyRoad.enums.RoleType;
 import jakarta.persistence.*;
 
 import java.util.HashSet;

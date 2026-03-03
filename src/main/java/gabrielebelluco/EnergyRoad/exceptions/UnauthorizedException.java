@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.Exceptions;
+package gabrielebelluco.EnergyRoad.exceptions;
 
 public class UnauthorizedException extends RuntimeException {
     public UnauthorizedException(String message) {

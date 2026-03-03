@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.ENUMS;
+package gabrielebelluco.EnergyRoad.enums;
 
 public enum EnergySiteType {
     IMPIANTO_EOLICO, IMPIANTO_SOLARE, IMPIANTO_IDROELETTRICO, IMPIANTO_GEOTERMALE, IMPIANTO_MARINO, IMPIANTO_NUCLEARE, UFFICIO

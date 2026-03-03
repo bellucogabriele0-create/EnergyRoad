@@ -1,7 +1,7 @@
-package gabrielebelluco.EnergyRoad.Repositories;
+package gabrielebelluco.EnergyRoad.repositories;
 
-import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteStatus;
-import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteType;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

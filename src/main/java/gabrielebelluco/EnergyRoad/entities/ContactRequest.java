@@ -1,6 +1,6 @@
 package gabrielebelluco.EnergyRoad.entities;
 
-import gabrielebelluco.EnergyRoad.ENUMS.ContactRequestType;
+import gabrielebelluco.EnergyRoad.enums.ContactRequestType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.Repositories;
+package gabrielebelluco.EnergyRoad.repositories;
 
 import gabrielebelluco.EnergyRoad.entities.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
