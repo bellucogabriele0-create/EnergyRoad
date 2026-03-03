@@ -20,6 +20,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     List<User> findByRolesRoleType(RoleType roleType);
 
+
     List<User> findByFirstnameContainingIgnoreCase(String firstname);
 
     List<User> findAllByOrderByCreatedAtDesc(LocalDate createdAt);
