@@ -1,0 +1,55 @@
+package gabrielebelluco.EnergyRoad.services;
+
+import gabrielebelluco.EnergyRoad.entities.Role;
+import gabrielebelluco.EnergyRoad.entities.User;
+import gabrielebelluco.EnergyRoad.enums.RoleType;
+import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
+import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
+import gabrielebelluco.EnergyRoad.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.UUID;
+
+public class UserService {
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public User getById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Utente non trovato con id: " + id));
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Utente non trovato con email: " + email));
+    }
+
+    public User save(UserCreateDTO payload) {
+        if (userRepository.existsByEmail(payload.getEmail())) {
+            throw new IllegalArgumentException("L'email è già in uso");
+        }
+        User u = new User();
+        u.setFirstname(payload.getFirstname());
+        u.setLastname(payload.getLastname());
+        u.setEmail(payload.getEmail());
+        u.setPassword(passwordEncoder.encode(payload.getPassword()));
+        // assegno ruolo USER di default al salvataggio
+        Role ruoloUser = roleRepository.findByRoleType(RoleType.USER)
+                .orElseThrow(() -> new NotFoundException("Ruolo USER non trovato nel db"));
+        // assegno il ruolo all'utente
+        u.getRoles().add(ruoloUser);
+        User savedUser = userRepository.save(u);
+        System.out.println("Nuovo utente registrato: " + payload.getFirstname());
+        return savedUser;
+    }
+}

@@ -1,6 +1,7 @@
 package gabrielebelluco.EnergyRoad.repositories;
 
 import gabrielebelluco.EnergyRoad.entities.User;
+import gabrielebelluco.EnergyRoad.enums.RoleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     boolean existsByEmail(String email); //TODO da sfruttare per verifica di duplicati
 
-    //List<User> findByRoleType(RoleType type);
+    List<User> findByRolesRoleType(RoleType roleType);
 
     List<User> findByFirstnameContainingIgnoreCase(String firstname);
 
