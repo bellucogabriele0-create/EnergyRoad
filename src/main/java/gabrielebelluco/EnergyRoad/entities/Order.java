@@ -3,6 +3,7 @@ package gabrielebelluco.EnergyRoad.entities;
 import gabrielebelluco.EnergyRoad.ENUMS.OrderStatus;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -13,7 +14,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID orderId;
     private LocalDate orderDate;
-    private Double totalAmount;
+    @Column(nullable = false, scale = 2)
+    private BigDecimal totalAmount;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
@@ -24,7 +26,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(UUID orderId, LocalDate orderDate, Double totalAmount, OrderStatus orderStatus, User user) {
+    public Order(UUID orderId, LocalDate orderDate, BigDecimal totalAmount, OrderStatus orderStatus, User user) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
@@ -40,16 +42,32 @@ public class Order {
         return orderDate;
     }
 
-    public Double getTotalAmount() {
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public BigDecimal getTotalAmount() {
         return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

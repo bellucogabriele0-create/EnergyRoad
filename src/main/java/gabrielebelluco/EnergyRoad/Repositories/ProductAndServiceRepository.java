@@ -5,17 +5,26 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+
 
 @Repository
 public interface ProductAndServiceRepository extends JpaRepository<ProductAndService, UUID> {
-    boolean productAndServiceId(UUID id);
+    boolean existsById(UUID uuid);
+
+    Optional<ProductAndService> findById(UUID Id);
 
     boolean existsByName(String name);
 
-    List<ProductAndService> findByCategoryProductCategoryId(UUID categoryId);
 
-    List<ProductAndService> findByCategoryProductDescription(String description);
+    List<ProductAndService> findByDescription(String description);
 
-    List<ProductAndService> findByCategoryProductPrice(double price);
+    List<ProductAndService> findByPrice(double price);
+
+    Optional<ProductAndService> findByName(String name);
+
+    List<ProductAndService> findByPriceLessThanEqual(Double maxPrice);
+
+    List<ProductAndService> findByPriceGreaterThanEqual(Double minPrice);
 }

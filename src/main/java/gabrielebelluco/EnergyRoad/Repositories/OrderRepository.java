@@ -6,14 +6,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, UUID> {
-    boolean existsByOrderId(UUID id);
+    boolean existsById(UUID id);
 
     boolean existsByOrderDate(LocalDate orderDate);
 
-    Optional<Order> findByOrderStatus(OrderStatus orderStatus); //TODO da sfruttare per il login
+    List<Order> findByOrderStatus(OrderStatus orderStatus);
+
+    List<Order> findByUserUserId(UUID userId);
+    
 }

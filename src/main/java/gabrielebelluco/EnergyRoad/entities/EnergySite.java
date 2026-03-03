@@ -4,7 +4,7 @@ import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.ENUMS.EnergySiteType;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -15,14 +15,16 @@ public class EnergySite {
     private UUID energySiteId;
     private String name;
     private String description;
+    @Column(nullable = false)
     private Double latitude;
+    @Column(nullable = false)
     private Double longitude;
     @Enumerated(EnumType.STRING)
     private EnergySiteType type;
     @Enumerated(EnumType.STRING)
     private EnergySiteStatus status;
-    private String Image;
-    private LocalDate createdAt;
+    private String image;
+    private LocalDateTime createdAt;
 
     public EnergySite() {
     }
@@ -35,8 +37,8 @@ public class EnergySite {
         this.longitude = longitude;
         this.type = type;
         this.status = status;
-        Image = image;
-        this.createdAt = LocalDate.now();
+        this.image = image;
+        this.createdAt = LocalDateTime.now();
     }
 
     public UUID getEnergySiteId() {
@@ -92,18 +94,18 @@ public class EnergySite {
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        image = image;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -117,7 +119,7 @@ public class EnergySite {
                 ", longitude=" + longitude +
                 ", type=" + type +
                 ", status=" + status +
-                ", Image='" + Image + '\'' +
+                ", Image='" + image + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }

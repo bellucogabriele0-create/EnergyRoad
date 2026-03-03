@@ -14,10 +14,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
     private String lastname;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
     private LocalDate createdAt;
     private String avatarUrl;

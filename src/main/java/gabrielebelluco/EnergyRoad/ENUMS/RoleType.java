@@ -1,5 +1,5 @@
 package gabrielebelluco.EnergyRoad.ENUMS;
 
 public enum RoleType {
-    SUPERADMIN, ADMIN, INVESTOR, USER
+    FOUNDER, ADMIN, INVESTOR, USER
 }

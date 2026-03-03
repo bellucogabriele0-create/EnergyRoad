@@ -11,7 +11,9 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID newsId;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String content;
     private LocalDate newsCreatedAt;
     @ManyToOne

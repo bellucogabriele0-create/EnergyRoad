@@ -18,7 +18,7 @@ public class ContactRequest {
     private String message;
     @Enumerated(EnumType.STRING)
     private ContactRequestType contactRequestType;
-    private LocalDate contactRequestCreatedAt;
+    private LocalDate createdAt;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
@@ -26,14 +26,14 @@ public class ContactRequest {
     public ContactRequest() {
     }
 
-    public ContactRequest(UUID contactRequestId, String contactRequestName, String email, String subject, ContactRequestType contactRequestType, String message, LocalDate contactRequestCreatedAt, User user) {
+    public ContactRequest(UUID contactRequestId, String contactRequestName, String email, String subject, ContactRequestType contactRequestType, String message, LocalDate createdAt, User user) {
         this.contactRequestId = contactRequestId;
         this.contactRequestName = contactRequestName;
         this.email = email;
         this.subject = subject;
         this.contactRequestType = contactRequestType;
         this.message = message;
-        this.contactRequestCreatedAt = contactRequestCreatedAt;
+        this.createdAt = createdAt;
         this.user = user;
     }
 
@@ -81,12 +81,12 @@ public class ContactRequest {
         this.contactRequestType = contactRequestType;
     }
 
-    public LocalDate getContactRequestCreatedAt() {
-        return contactRequestCreatedAt;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setContactRequestCreatedAt(LocalDate contactRequestCreatedAt) {
-        this.contactRequestCreatedAt = contactRequestCreatedAt;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUser() {
@@ -106,7 +106,7 @@ public class ContactRequest {
                 ", subject='" + subject + '\'' +
                 ", message='" + message + '\'' +
                 ", contactRequestType=" + contactRequestType +
-                ", contactRequestCreatedAt=" + contactRequestCreatedAt +
+                ", contactRequestCreatedAt=" + createdAt +
                 ", user=" + user +
                 '}';
     }

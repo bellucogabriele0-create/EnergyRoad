@@ -2,6 +2,7 @@ package gabrielebelluco.EnergyRoad.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -12,7 +13,8 @@ public class ProductAndService {
     private UUID productAndServiceId;
     private String name;
     private String description;
-    private Double price;
+    @Column(nullable = false, scale = 2)
+    private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ProductCategory category;
@@ -20,7 +22,7 @@ public class ProductAndService {
     public ProductAndService() {
     }
 
-    public ProductAndService(UUID productAndServiceId, String name, String description, Double price, ProductCategory category) {
+    public ProductAndService(UUID productAndServiceId, String name, String description, BigDecimal price, ProductCategory category) {
         this.productAndServiceId = productAndServiceId;
         this.name = name;
         this.description = description;
@@ -49,11 +51,11 @@ public class ProductAndService {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

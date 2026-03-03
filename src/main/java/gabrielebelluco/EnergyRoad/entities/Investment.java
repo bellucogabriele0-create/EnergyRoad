@@ -3,7 +3,8 @@ package gabrielebelluco.EnergyRoad.entities;
 import gabrielebelluco.EnergyRoad.ENUMS.InvestmentStatus;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -12,12 +13,13 @@ public class Investment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID investmentId;
-    private Long amount;
-    private LocalDate investmentDate;
+    @Column(nullable = false, scale = 2)
+    private BigDecimal amount;
+    private LocalDateTime investmentDate;
     @Enumerated(EnumType.STRING)
     private InvestmentStatus status;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
     @JoinColumn(name = "energy_site_id")
@@ -26,7 +28,7 @@ public class Investment {
     public Investment() {
     }
 
-    public Investment(UUID investmentId, Long amount, LocalDate investmentDate, InvestmentStatus status, User user, EnergySite energySite) {
+    public Investment(UUID investmentId, BigDecimal amount, LocalDateTime investmentDate, InvestmentStatus status, User user, EnergySite energySite) {
         this.investmentId = investmentId;
         this.amount = amount;
         this.investmentDate = investmentDate;
@@ -39,19 +41,19 @@ public class Investment {
         return investmentId;
     }
 
-    public Long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public LocalDate getInvestmentDate() {
+    public LocalDateTime getInvestmentDate() {
         return investmentDate;
     }
 
-    public void setInvestmentDate(LocalDate investmentDate) {
+    public void setInvestmentDate(LocalDateTime investmentDate) {
         this.investmentDate = investmentDate;
     }
 

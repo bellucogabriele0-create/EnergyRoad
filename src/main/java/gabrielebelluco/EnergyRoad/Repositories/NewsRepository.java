@@ -10,11 +10,10 @@ import java.util.UUID;
 
 @Repository
 public interface NewsRepository extends JpaRepository<News, UUID> {
-    boolean existsByNewsId(UUID id);
+    boolean existsById(UUID id);
 
     boolean existsByTitle(String title);
 
-    List<News> findByNewsCreatedAtDesc(LocalDate newsCreatedAt);
-
+    List<News> findAllByOrderByNewsCreatedAtDesc(LocalDate newsCreatedAt);
 
 }

@@ -17,7 +17,7 @@ public interface ContactRequestRepository extends JpaRepository<ContactRequest, 
 
     List<ContactRequest> findByContactRequestType(String contactRequestType);
 
-    List<ContactRequest> findByContactRequestCreatedAtDesc(LocalDate contactRequestCreatedAt);
+    List<ContactRequest> findAllByOrderByCreatedAtDesc(LocalDate contactRequestCreatedAt);
 
-    List<ContactRequest> findByContactRequestCreatedAtAsc(LocalDate contactRequestCreatedAt);
+    List<ContactRequest> findAllByOrderByCreatedAtAsc(LocalDate contactRequestCreatedAt);
 }

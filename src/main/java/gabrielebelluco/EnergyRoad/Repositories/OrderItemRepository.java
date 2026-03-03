@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, UUID> {
 
-    boolean existsByOrderItemId(UUID id);
+    boolean existsById(UUID id);
 
-    List<OrderItem> findByItemPriceAtPurchase(double itemPriceAtPurchase);
+    List<OrderItem> findByOrderOrderId(UUID orderId);
 }

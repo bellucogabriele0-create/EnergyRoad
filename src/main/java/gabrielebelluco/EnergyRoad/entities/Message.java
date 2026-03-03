@@ -2,7 +2,7 @@ package gabrielebelluco.EnergyRoad.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -12,7 +12,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID messageId;
     private String messageContent;
-    private LocalDate messageCreatedAt;
+    private LocalDateTime messageCreatedAt;
     @ManyToOne
     @JoinColumn(name = "sender_id")
     private User sender;
@@ -26,7 +26,7 @@ public class Message {
     public Message(UUID messageId, String messageContent, User sender, User receiver) {
         this.messageId = messageId;
         this.messageContent = messageContent;
-        this.messageCreatedAt = LocalDate.now();
+        this.messageCreatedAt = LocalDateTime.now();
         this.sender = sender;
         this.receiver = receiver;
     }
@@ -43,11 +43,11 @@ public class Message {
         this.messageContent = messageContent;
     }
 
-    public LocalDate getMessageCreatedAt() {
+    public LocalDateTime getMessageCreatedAt() {
         return messageCreatedAt;
     }
 
-    public void setMessageCreatedAt(LocalDate messageCreatedAt) {
+    public void setMessageCreatedAt(LocalDateTime messageCreatedAt) {
         this.messageCreatedAt = messageCreatedAt;
     }
 

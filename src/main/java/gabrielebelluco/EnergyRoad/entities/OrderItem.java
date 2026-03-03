@@ -2,6 +2,7 @@ package gabrielebelluco.EnergyRoad.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -11,8 +12,8 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID orderItemId;
     private int quantity;
-    private double itemPriceAtPurchase;
-
+    @Column(nullable = false, scale = 2)
+    private BigDecimal itemPriceAtPurchase;
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
@@ -23,7 +24,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(UUID orderItemId, int quantity, double itemPriceAtPurchase, Order order, ProductAndService productAndService) {
+    public OrderItem(UUID orderItemId, int quantity, BigDecimal itemPriceAtPurchase, Order order, ProductAndService productAndService) {
         this.orderItemId = orderItemId;
         this.quantity = quantity;
         this.itemPriceAtPurchase = itemPriceAtPurchase;
@@ -43,11 +44,11 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public double getItemPriceAtPurchase() {
+    public BigDecimal getItemPriceAtPurchase() {
         return itemPriceAtPurchase;
     }
 
-    public void setItemPriceAtPurchase(double itemPriceAtPurchase) {
+    public void setItemPriceAtPurchase(BigDecimal itemPriceAtPurchase) {
         this.itemPriceAtPurchase = itemPriceAtPurchase;
     }
 
