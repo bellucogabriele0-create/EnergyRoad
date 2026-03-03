@@ -26,8 +26,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(UUID orderId, LocalDate orderDate, BigDecimal totalAmount, OrderStatus orderStatus, User user) {
-        this.orderId = orderId;
+    public Order(LocalDate orderDate, BigDecimal totalAmount, OrderStatus orderStatus, User user) {
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;

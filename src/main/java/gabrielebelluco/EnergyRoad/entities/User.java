@@ -42,14 +42,11 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(UUID userId, String firstname, String email, String lastname, String password, String avatarUrl, List<Order> orders, List<Investment> investments, Set<Role> roles) {
-        this.userId = userId;
+    public User(String firstname, String email, String lastname, String password, List<Order> orders, List<Investment> investments, Set<Role> roles) {
         this.firstname = firstname;
         this.email = email;
         this.lastname = lastname;
         this.password = password;
-        this.createdAt = LocalDate.now();
-        this.avatarUrl = "https://ui-avatars.com/api?name=" + firstname + "+" + lastname;
         this.orders = orders;
         this.investments = investments;
         this.roles = roles;
@@ -145,6 +142,14 @@ public class User implements UserDetails {
                 '}';
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDate.now();
+        if (this.avatarUrl == null) {
+            this.avatarUrl = "https://ui-avatars.com/api?name=" + firstname + "+" + lastname;
+        }
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (roles == null) return new ArrayList<>();
@@ -155,7 +160,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return this.email;
     }
 
     @Override

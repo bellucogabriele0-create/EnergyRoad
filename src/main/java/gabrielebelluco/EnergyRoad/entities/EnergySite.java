@@ -29,8 +29,7 @@ public class EnergySite {
     public EnergySite() {
     }
 
-    public EnergySite(UUID energySiteId, String description, String name, Double latitude, Double longitude, EnergySiteType type, EnergySiteStatus status, String image) {
-        this.energySiteId = energySiteId;
+    public EnergySite(String description, String name, Double latitude, Double longitude, EnergySiteType type, EnergySiteStatus status, String image) {
         this.description = description;
         this.name = name;
         this.latitude = latitude;

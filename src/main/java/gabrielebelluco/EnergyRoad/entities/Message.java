@@ -23,8 +23,8 @@ public class Message {
     public Message() {
     }
 
-    public Message(UUID messageId, String messageContent, User sender, User receiver) {
-        this.messageId = messageId;
+    public Message(String messageContent, User sender, User receiver) {
+
         this.messageContent = messageContent;
         this.messageCreatedAt = LocalDateTime.now();
         this.sender = sender;

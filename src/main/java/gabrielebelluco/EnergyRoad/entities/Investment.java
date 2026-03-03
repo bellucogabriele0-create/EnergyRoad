@@ -28,8 +28,7 @@ public class Investment {
     public Investment() {
     }
 
-    public Investment(UUID investmentId, BigDecimal amount, LocalDateTime investmentDate, InvestmentStatus status, User user, EnergySite energySite) {
-        this.investmentId = investmentId;
+    public Investment(BigDecimal amount, LocalDateTime investmentDate, InvestmentStatus status, User user, EnergySite energySite) {
         this.amount = amount;
         this.investmentDate = investmentDate;
         this.status = status;

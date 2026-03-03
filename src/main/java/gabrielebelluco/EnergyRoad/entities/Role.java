@@ -22,10 +22,13 @@ public class Role {
     }
 
 
-    public Role(UUID roleId, RoleType roleType, Set<User> users) {
-        this.roleId = roleId;
+    public Role(RoleType roleType, Set<User> users) {
         this.roleType = roleType;
         this.users = users;
+    }
+
+    public Role(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     public Set<User> getUsers() {

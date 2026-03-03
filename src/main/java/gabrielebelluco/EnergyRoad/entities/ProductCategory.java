@@ -15,8 +15,7 @@ public class ProductCategory {
     public ProductCategory() {
     }
 
-    public ProductCategory(UUID productCategoryId, String name) {
-        this.productCategoryId = productCategoryId;
+    public ProductCategory(String name) {
         this.name = name;
     }
 

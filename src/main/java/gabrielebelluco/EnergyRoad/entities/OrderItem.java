@@ -24,8 +24,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(UUID orderItemId, int quantity, BigDecimal itemPriceAtPurchase, Order order, ProductAndService productAndService) {
-        this.orderItemId = orderItemId;
+    public OrderItem(int quantity, BigDecimal itemPriceAtPurchase, Order order, ProductAndService productAndService) {
         this.quantity = quantity;
         this.itemPriceAtPurchase = itemPriceAtPurchase;
         this.order = order;

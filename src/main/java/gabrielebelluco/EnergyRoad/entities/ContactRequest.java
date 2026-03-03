@@ -26,8 +26,7 @@ public class ContactRequest {
     public ContactRequest() {
     }
 
-    public ContactRequest(UUID contactRequestId, String contactRequestName, String email, String subject, ContactRequestType contactRequestType, String message, LocalDate createdAt, User user) {
-        this.contactRequestId = contactRequestId;
+    public ContactRequest(String contactRequestName, String email, String subject, ContactRequestType contactRequestType, String message, LocalDate createdAt, User user) {
         this.contactRequestName = contactRequestName;
         this.email = email;
         this.subject = subject;

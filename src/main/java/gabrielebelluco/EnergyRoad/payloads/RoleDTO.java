@@ -1,11 +1,14 @@
 package gabrielebelluco.EnergyRoad.payloads;
 
 import gabrielebelluco.EnergyRoad.enums.RoleType;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class RoleDTO {
-    @NotBlank(message = "la scelta è obbligatoria")
+    @NotNull(message = "la scelta è obbligatoria")
     private RoleType roleType;
+
+    public RoleDTO(RoleType roleType) {
+    }
 
     public RoleType getRoleType() {
         return roleType;

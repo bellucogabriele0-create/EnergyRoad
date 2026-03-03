@@ -22,8 +22,7 @@ public class ProductAndService {
     public ProductAndService() {
     }
 
-    public ProductAndService(UUID productAndServiceId, String name, String description, BigDecimal price, ProductCategory category) {
-        this.productAndServiceId = productAndServiceId;
+    public ProductAndService(String name, String description, BigDecimal price, ProductCategory category) {
         this.name = name;
         this.description = description;
         this.price = price;

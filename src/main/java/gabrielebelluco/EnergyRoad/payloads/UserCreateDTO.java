@@ -16,6 +16,9 @@ public class UserCreateDTO {
     @Size(min = 6, message = "La password deve avere almeno 6 caratteri")
     private String password;
 
+    public UserCreateDTO(String adminUsername, String adminEmail, String adminPwd, String adminName, String adminLastName) {
+    }
+
     public String getFirstname() {
         return firstname;
     }

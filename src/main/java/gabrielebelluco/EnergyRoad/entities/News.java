@@ -23,8 +23,8 @@ public class News {
     public News() {
     }
 
-    public News(UUID newsId, String title, String content, LocalDate newsCreatedAt, User createdBy) {
-        this.newsId = newsId;
+    public News(String title, String content, LocalDate newsCreatedAt, User createdBy) {
+
         this.title = title;
         this.content = content;
         this.newsCreatedAt = newsCreatedAt;
