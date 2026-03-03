@@ -1,12 +1,16 @@
 package gabrielebelluco.EnergyRoad.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -51,6 +55,14 @@ public class User {
         this.orders = orders;
         this.investments = investments;
         this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (roles == null) return new ArrayList<>();
+        return roles.stream()
+                .map(r -> new SimpleGrantedAuthority(r.getRoleType().name()))
+                .collect(Collectors.toList());
     }
 
     public UUID getUserId() {
