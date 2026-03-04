@@ -6,7 +6,6 @@ import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,7 +18,7 @@ public interface EnergySiteRepository extends JpaRepository<EnergySite, UUID> {
 
     boolean existsByName(String name);
 
-    List<EnergySite> findAllByOrderByCreatedAtDesc(LocalDateTime createdAt);
+    List<EnergySite> findAllByOrderByCreatedAtDesc();
 
     List<EnergySite> findByStatus(EnergySiteStatus status);
 

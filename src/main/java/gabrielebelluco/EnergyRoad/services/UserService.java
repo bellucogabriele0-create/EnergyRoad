@@ -4,7 +4,6 @@ import gabrielebelluco.EnergyRoad.entities.Role;
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.exceptions.UnauthorizedException;
 import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
 import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
 import gabrielebelluco.EnergyRoad.repositories.UserRepository;
@@ -97,11 +96,11 @@ public class UserService {
     }
 
     public User assignRoleToUser(String targetEmail, RoleType roleType, User actionUser) {
-        boolean isFounder = actionUser.getRoles().stream()
-                .anyMatch(r -> r.getRoleType() == RoleType.FOUNDER);
-        if (!isFounder) {
-            throw new UnauthorizedException("solo un FOUNDER può assegnare ruoli");
-        }
+//        boolean isFounder = actionUser.getRoles().stream()
+//                .anyMatch(r -> r.getRoleType() == RoleType.FOUNDER);
+//        if (!isFounder) {
+//            throw new UnauthorizedException("solo un FOUNDER può assegnare ruoli");
+//        }
         User targetUser = userRepository.findByEmail(targetEmail)
                 .orElseThrow(() -> new NotFoundException("user non trovato: " + targetEmail));
         Role role = roleRepository.findByRoleType(roleType)
