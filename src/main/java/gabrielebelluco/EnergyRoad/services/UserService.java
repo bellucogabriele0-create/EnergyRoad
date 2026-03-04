@@ -55,4 +55,20 @@ public class UserService {
         System.out.println("Nuovo utente registrato: " + payload.getFirstname());
         return savedUser;
     }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public User createFounder(UserCreateDTO payload) {
+        User u = new User();
+        u.setFirstname(payload.getFirstname());
+        u.setLastname(payload.getLastname());
+        u.setEmail(payload.getEmail());
+        u.setPassword(passwordEncoder.encode(payload.getPassword()));
+        Role founderRole = roleRepository.findByRoleType(RoleType.FOUNDER)
+                .orElseThrow(() -> new NotFoundException("ruolo FOUNDER non trovato"));
+        u.getRoles().add(founderRole);
+        return userRepository.save(u);
+    }
 }

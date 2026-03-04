@@ -15,17 +15,15 @@ public class Runner {
     @Bean
     public ApplicationRunner loadRoles(RoleRepository roleRepository) {
         return args -> {
-
             for (RoleType roleType : RoleType.values()) {
-
                 if (!roleRepository.existsByRoleType(roleType)) {
                     Role role = new Role();
                     role.setRoleType(roleType);
                     roleRepository.save(role);
                 }
-
             }
-
         };
     }
+
+    
 }
