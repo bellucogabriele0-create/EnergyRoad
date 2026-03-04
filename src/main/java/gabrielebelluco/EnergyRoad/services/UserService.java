@@ -52,8 +52,24 @@ public class UserService {
         // assegno il ruolo all'utente
         u.getRoles().add(ruoloUser);
         User savedUser = userRepository.save(u);
-        System.out.println("Nuovo utente registrato: " + payload.getFirstname());
+        System.out.println("nuovo USER registrato: " + payload.getFirstname());
         return savedUser;
+    }
+
+    public User createInvestor(UserCreateDTO payload) {
+        if (userRepository.existsByEmail(payload.getEmail())) {
+            throw new IllegalArgumentException("Email già utilizzata");
+        }
+        User u = new User();
+        u.setFirstname(payload.getFirstname());
+        u.setLastname(payload.getLastname());
+        u.setEmail(payload.getEmail());
+        u.setPassword(passwordEncoder.encode(payload.getPassword()));
+        Role roleInvestor = roleRepository.findByRoleType(RoleType.INVESTOR)
+                .orElseThrow(() -> new NotFoundException("ruolo INVESTOR non trovato"));
+        u.getRoles().add(roleInvestor);
+        System.out.println("nuovo INVESTOR registrato: " + payload.getFirstname());
+        return userRepository.save(u);
     }
 
     public boolean existsByEmail(String email) {
@@ -61,6 +77,9 @@ public class UserService {
     }
 
     public User createFounder(UserCreateDTO payload) {
+        if (userRepository.existsByEmail(payload.getEmail())) {
+            throw new IllegalArgumentException("email già utilizzata");
+        }
         User u = new User();
         u.setFirstname(payload.getFirstname());
         u.setLastname(payload.getLastname());
