@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private List<Order> orders;
     @OneToMany(mappedBy = "user")
     private List<Investment> investments;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

@@ -10,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
@@ -36,10 +39,10 @@ public class SecurityConfig {
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.sessionManagement(sessions -> sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
-//         /auth/** pubblico, tutto il resto richiede token
-//        httpSecurity.authorizeHttpRequests(request -> request
-//                .requestMatchers("/auth/**").permitAll()
-//                .anyRequest().authenticated());
+        //   /auth/** pubblico, tutto il resto richiede token
+        httpSecurity.authorizeHttpRequests(request -> request
+                .requestMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated());
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
@@ -48,4 +51,16 @@ public class SecurityConfig {
     public PasswordEncoder getBCrypt() {
         return new BCryptPasswordEncoder(12);
     }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowedHeaders(List.of("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
 }

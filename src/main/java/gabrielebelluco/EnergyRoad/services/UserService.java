@@ -4,6 +4,7 @@ import gabrielebelluco.EnergyRoad.entities.Role;
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
+import gabrielebelluco.EnergyRoad.exceptions.UnauthorizedException;
 import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
 import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
 import gabrielebelluco.EnergyRoad.repositories.UserRepository;
@@ -32,10 +33,19 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("Utente non trovato con id: " + id));
     }
 
+    public User findById(UUID userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("id non trovato: " + userId));
+    }
+
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new NotFoundException("Utente non trovato con email: " + email));
     }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 
     public User createUser(UserCreateDTO payload) {
         if (userRepository.existsByEmail(payload.getEmail())) {
@@ -72,9 +82,6 @@ public class UserService {
         return userRepository.save(u);
     }
 
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
 
     public User createFounder(UserCreateDTO payload) {
         if (userRepository.existsByEmail(payload.getEmail())) {
@@ -89,5 +96,22 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("ruolo FOUNDER non trovato"));
         u.getRoles().add(founderRole);
         return userRepository.save(u);
+    }
+
+    public User assignRoleToUser(String targetEmail, RoleType roleType, User actionUser) {
+        boolean isFounder = actionUser.getRoles().stream()
+                .anyMatch(r -> r.getRoleType() == RoleType.FOUNDER);
+        if (!isFounder) {
+            throw new UnauthorizedException("solo un FOUNDER può assegnare ruoli");
+        }
+        User targetUser = userRepository.findByEmail(targetEmail)
+                .orElseThrow(() -> new NotFoundException("user non trovato: " + targetEmail));
+        Role role = roleRepository.findByRoleType(roleType)
+                .orElseThrow(() -> new NotFoundException("role non trovato: " + roleType));
+        if (!targetUser.getRoles().contains(role)) {
+            targetUser.getRoles().add(role);
+            targetUser = userRepository.save(targetUser);
+        }
+        return targetUser;
     }
 }
