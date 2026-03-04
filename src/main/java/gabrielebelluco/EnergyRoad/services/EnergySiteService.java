@@ -1,6 +1,8 @@
 package gabrielebelluco.EnergyRoad.services;
 
 import gabrielebelluco.EnergyRoad.entities.EnergySite;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
 import gabrielebelluco.EnergyRoad.repositories.EnergySiteRepository;
 import org.springframework.stereotype.Service;
@@ -22,5 +24,13 @@ public class EnergySiteService {
 
     public EnergySite getById(UUID id) {
         return energySiteRepository.findById(id).orElseThrow(() -> new NotFoundException("sito non trovato"));
+    }
+
+    public List<EnergySite> getByStatus(EnergySiteStatus status) {
+        return energySiteRepository.findByStatus(status);
+    }
+
+    public List<EnergySite> getByType(EnergySiteType type) {
+        return energySiteRepository.findByType(type);
     }
 }
