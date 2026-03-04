@@ -22,8 +22,15 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public String register(@RequestBody @Valid UserCreateDTO payload) {
-        userService.save(payload);
+        userService.createUser(payload);
         return "Registrazione avvenuta con successo";
+    }
+
+    @PostMapping("/register-investor")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String registerInvestor(@RequestBody @Valid UserCreateDTO payload) {
+        userService.createInvestor(payload);
+        return "Registrazione investor avvenuta con successo";
     }
 
     @PostMapping("/login")
