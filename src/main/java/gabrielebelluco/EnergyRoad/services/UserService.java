@@ -56,10 +56,8 @@ public class UserService {
         u.setLastname(payload.getLastname());
         u.setEmail(payload.getEmail());
         u.setPassword(passwordEncoder.encode(payload.getPassword()));
-        // assegno ruolo USER di default al salvataggio
         Role ruoloUser = roleRepository.findByRoleType(RoleType.USER)
                 .orElseThrow(() -> new NotFoundException("Ruolo USER non trovato nel db"));
-        // assegno il ruolo all'utente
         u.getRoles().add(ruoloUser);
         User savedUser = userRepository.save(u);
         System.out.println("nuovo USER registrato: " + payload.getFirstname());
@@ -108,11 +106,13 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("user non trovato: " + targetEmail));
         Role role = roleRepository.findByRoleType(roleType)
                 .orElseThrow(() -> new NotFoundException("role non trovato: " + roleType));
-        {
-            targetUser.getRoles().clear();
-            targetUser.getRoles().add(role);
-            targetUser = userRepository.save(targetUser);
+        boolean alreadyHasRole = targetUser.getRoles().stream()
+                .anyMatch(r -> r.getRoleType() == roleType);
+        if (alreadyHasRole) {
+            throw new IllegalArgumentException("questo utente " + targetEmail + " ha già questo ruolo " + roleType);
         }
-        return targetUser;
+        targetUser.getRoles().clear();
+        targetUser.getRoles().add(role);
+        return userRepository.save(targetUser);
     }
 }
