@@ -33,4 +33,9 @@ public class EnergySiteService {
     public List<EnergySite> getByType(EnergySiteType type) {
         return energySiteRepository.findByType(type);
     }
+
+    public void delete(UUID id) {
+        EnergySite site = getById(id);
+        energySiteRepository.delete(site);
+    }
 }
