@@ -16,5 +16,7 @@ public record EnergySiteCreateDTO(
         @NotNull(message = "dai una longitudine al sito ")
         Double longitude,
         @NotNull(message = "scgli un tipo di sito")
-        EnergySiteType energySiteType) {
+        EnergySiteType energySiteType,
+        String image
+) {
 }

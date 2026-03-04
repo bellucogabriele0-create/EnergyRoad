@@ -97,7 +97,7 @@ public class EnergySite {
     }
 
     public void setImage(String image) {
-        image = image;
+        this.image = image;
     }
 
     public LocalDateTime getCreatedAt() {

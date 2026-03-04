@@ -4,7 +4,9 @@ import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
+import gabrielebelluco.EnergyRoad.payloads.EnergySiteCreateDTO;
 import gabrielebelluco.EnergyRoad.repositories.EnergySiteRepository;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +40,21 @@ public class EnergySiteService {
         EnergySite site = getById(id);
         energySiteRepository.delete(site);
     }
+
+    public EnergySite create(EnergySiteCreateDTO dto) throws BadRequestException {
+        if (energySiteRepository.existsByName(dto.name())) {
+            throw new BadRequestException("questo sito è già esistente");
+        }
+        EnergySite energySite = new EnergySite(
+                dto.description(),
+                dto.name(),
+                dto.latitude(),
+                dto.longitude(),
+                dto.energySiteType(),
+                EnergySiteStatus.IN_SVILUPPO,
+                dto.image()
+        );
+        return energySiteRepository.save(energySite);
+    }
+
 }
