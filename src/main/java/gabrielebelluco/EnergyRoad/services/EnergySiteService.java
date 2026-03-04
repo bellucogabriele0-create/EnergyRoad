@@ -45,6 +45,9 @@ public class EnergySiteService {
         if (energySiteRepository.existsByName(dto.name())) {
             throw new BadRequestException("questo sito è già esistente");
         }
+        if (energySiteRepository.existsByLatitudeAndLongitude(dto.latitude(), dto.longitude())) {
+            throw new BadRequestException("esiste già un sito in queste coordinate");
+        }
         EnergySite energySite = new EnergySite(
                 dto.description(),
                 dto.name(),

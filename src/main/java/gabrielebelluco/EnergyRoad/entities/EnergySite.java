@@ -4,21 +4,24 @@ import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "energy_sites")
+@Table(name = "energy_sites", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"latitude", "longitude"})
+})
 public class EnergySite {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID energySiteId;
     private String name;
     private String description;
-    @Column(nullable = false)
-    private Double latitude;
-    @Column(nullable = false)
-    private Double longitude;
+    @Column(nullable = false, precision = 9, scale = 6)
+    private BigDecimal latitude;
+    @Column(nullable = false, precision = 9, scale = 6)
+    private BigDecimal longitude;
     @Enumerated(EnumType.STRING)
     private EnergySiteType type;
     @Enumerated(EnumType.STRING)
@@ -29,7 +32,7 @@ public class EnergySite {
     public EnergySite() {
     }
 
-    public EnergySite(String description, String name, Double latitude, Double longitude, EnergySiteType type, EnergySiteStatus status, String image) {
+    public EnergySite(String description, String name, BigDecimal latitude, BigDecimal longitude, EnergySiteType type, EnergySiteStatus status, String image) {
         this.description = description;
         this.name = name;
         this.latitude = latitude;
@@ -60,11 +63,11 @@ public class EnergySite {
         this.description = description;
     }
 
-    public Double getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
     }
 
@@ -76,11 +79,11 @@ public class EnergySite {
         this.type = type;
     }
 
-    public Double getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
 

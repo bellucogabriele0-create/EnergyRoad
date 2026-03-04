@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
+
 public record EnergySiteCreateDTO(
         @NotBlank(message = "dai un nome a questo sito")
         String name,
@@ -12,9 +14,9 @@ public record EnergySiteCreateDTO(
         @Size(max = 500)
         String description,
         @NotNull(message = "dai una latitudine al sito ")
-        Double latitude,
+        BigDecimal latitude,
         @NotNull(message = "dai una longitudine al sito ")
-        Double longitude,
+        BigDecimal longitude,
         @NotNull(message = "scgli un tipo di sito")
         EnergySiteType energySiteType,
         String image
