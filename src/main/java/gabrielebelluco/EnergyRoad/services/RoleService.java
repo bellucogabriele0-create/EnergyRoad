@@ -32,18 +32,18 @@ public class RoleService {
                 -> new NotFoundException("Ruolo non trovato con id: " + ruoloId));
     }
 
-    public Role saveRuolo(RoleDTO payload) {
-        if (roleRepository.existsByRoleType(payload.getRoleType()))
-            throw new IllegalArgumentException("Il ruolo " + payload.getRoleType() + " esiste già");
+    public Role saveRuolo(RoleDTO dto) {
+        if (roleRepository.existsByRoleType(dto.roleType()))
+            throw new IllegalArgumentException("Il ruolo " + dto.roleType() + " esiste già");
         Role savedRole = new Role();
-        savedRole.setRoleType(payload.getRoleType());
-        System.out.println("è stato salvato con successo ruolo di: " + payload.getRoleType());
+        savedRole.setRoleType(dto.roleType());
+        System.out.println("è stato salvato con successo ruolo di: " + dto.roleType());
         return roleRepository.save(savedRole);
     }
 
-    public Role findByIdAndUpdate(UUID ruoloId, RoleDTO payload) {
+    public Role findByIdAndUpdate(UUID ruoloId, RoleDTO dto) {
         Role found = this.findById(ruoloId);
-        found.setRoleType(payload.getRoleType());
+        found.setRoleType(dto.roleType());
         System.out.println("è stato modificato con successo il ruolo con id :" + ruoloId);
         return roleRepository.save(found);
     }
@@ -54,12 +54,12 @@ public class RoleService {
     }
 
     @Transactional
-    public Role addRole(RoleDTO payload) throws BadRequestException {
+    public Role addRole(RoleDTO dto) throws BadRequestException {
         // Verifica che il ruolo non esista già
-        if (roleRepository.existsByRoleType(payload.getRoleType())) {
-            throw new BadRequestException("è già esiste il ruolo: " + payload.getRoleType());
+        if (roleRepository.existsByRoleType(dto.roleType())) {
+            throw new BadRequestException("è già esiste il ruolo: " + dto.roleType());
         }
-        Role newRuolo = new Role(payload.getRoleType());
+        Role newRuolo = new Role(dto.roleType());
         Role saved = this.roleRepository.save(newRuolo);
         System.out.println("Ruolo creato: " + saved.getRoleType());
         return saved;
