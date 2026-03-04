@@ -108,7 +108,8 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("user non trovato: " + targetEmail));
         Role role = roleRepository.findByRoleType(roleType)
                 .orElseThrow(() -> new NotFoundException("role non trovato: " + roleType));
-        if (!targetUser.getRoles().contains(role)) {
+        {
+            targetUser.getRoles().clear();
             targetUser.getRoles().add(role);
             targetUser = userRepository.save(targetUser);
         }
