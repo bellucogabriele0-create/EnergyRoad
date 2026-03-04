@@ -37,7 +37,7 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("Utente non trovato con email: " + email));
     }
 
-    public User save(UserCreateDTO payload) {
+    public User createUser(UserCreateDTO payload) {
         if (userRepository.existsByEmail(payload.getEmail())) {
             throw new IllegalArgumentException("L'email è già in uso");
         }
