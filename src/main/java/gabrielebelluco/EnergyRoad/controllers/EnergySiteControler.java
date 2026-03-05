@@ -51,4 +51,11 @@ public class EnergySiteControler {
     public List<EnergySite> getByType(@PathVariable EnergySiteType type) {
         return energySiteService.getByType(type);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable UUID id) {
+        energySiteService.delete(id);
+    }
 }
