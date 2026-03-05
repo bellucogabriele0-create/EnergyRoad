@@ -4,7 +4,7 @@ package gabrielebelluco.EnergyRoad.controllers;
 import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
-import gabrielebelluco.EnergyRoad.payloads.EnergySiteCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.EnergySiteDTO;
 import gabrielebelluco.EnergyRoad.services.EnergySiteService;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
@@ -37,7 +37,7 @@ public class EnergySiteControler {
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
     @ResponseStatus(HttpStatus.CREATED)
-    public EnergySite create(@RequestBody @Validated EnergySiteCreateDTO dto) throws BadRequestException {
+    public EnergySite create(@RequestBody @Validated EnergySiteDTO dto) throws BadRequestException {
         return energySiteService.create(dto);
     }
 
@@ -52,8 +52,17 @@ public class EnergySiteControler {
         return energySiteService.getByType(type);
     }
 
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN','FOUNDER')")
+    public EnergySite update(
+            @PathVariable UUID id,
+            @RequestBody EnergySiteDTO dto
+    ) throws BadRequestException {
+        return energySiteService.update(id, dto);
+    }
+
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    @PreAuthorize("hasRole('ADMIN','FOUNDER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable UUID id) {
         energySiteService.delete(id);

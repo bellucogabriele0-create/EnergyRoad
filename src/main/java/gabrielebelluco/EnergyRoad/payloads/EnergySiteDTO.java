@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-public record EnergySiteCreateDTO(
+public record EnergySiteDTO(
         @NotBlank(message = "dai un nome a questo sito")
         String name,
         @NotBlank(message = "dai una descrizione a questo sito, massimo 500 caratteri")

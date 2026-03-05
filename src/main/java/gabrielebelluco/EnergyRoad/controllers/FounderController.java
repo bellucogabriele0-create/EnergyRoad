@@ -22,10 +22,10 @@ public class FounderController {
 
     @PreAuthorize("hasRole('FOUNDER')")
     @PutMapping("/assign-role")
-    public String assignRole(@RequestBody AssignRoleRequestDTO request) {
+    public String assignRole(@RequestBody AssignRoleRequestDTO dto) {
         User actionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User updatedUser = userService.assignRoleToUser(request.getEmail(), request.getRoleType(), actionUser);
-        return "il ruolo " + request.getRoleType() + " è stato assegnato a " + updatedUser.getEmail();
+        User updatedUser = userService.assignRoleToUser(dto.email(), dto.roleType(), actionUser);
+        return "il ruolo " + dto.roleType() + " è stato assegnato a " + updatedUser.getEmail();
     }
 }
 
