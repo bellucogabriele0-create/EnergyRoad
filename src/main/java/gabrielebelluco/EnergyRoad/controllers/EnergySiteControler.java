@@ -2,6 +2,8 @@ package gabrielebelluco.EnergyRoad.controllers;
 
 
 import gabrielebelluco.EnergyRoad.entities.EnergySite;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
+import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.payloads.EnergySiteCreateDTO;
 import gabrielebelluco.EnergyRoad.services.EnergySiteService;
 import org.apache.coyote.BadRequestException;
@@ -37,5 +39,16 @@ public class EnergySiteControler {
     @ResponseStatus(HttpStatus.CREATED)
     public EnergySite create(@RequestBody @Validated EnergySiteCreateDTO dto) throws BadRequestException {
         return energySiteService.create(dto);
+    }
+
+
+    @GetMapping("/status/{status}")
+    public List<EnergySite> getByStatus(@PathVariable EnergySiteStatus status) {
+        return energySiteService.getByStatus(status);
+    }
+
+    @GetMapping("/type/{type}")
+    public List<EnergySite> getByType(@PathVariable EnergySiteType type) {
+        return energySiteService.getByType(type);
     }
 }
