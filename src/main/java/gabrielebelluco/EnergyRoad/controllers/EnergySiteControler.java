@@ -5,6 +5,7 @@ import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.payloads.EnergySiteDTO;
+import gabrielebelluco.EnergyRoad.payloads.EnergySiteStatusDTO;
 import gabrielebelluco.EnergyRoad.services.EnergySiteService;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,15 @@ public class EnergySiteControler {
             @RequestBody EnergySiteDTO dto
     ) throws BadRequestException {
         return energySiteService.update(id, dto);
+    }
+
+    @PatchMapping("/{id}/status")
+    //@PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    public EnergySite updateStatus(
+            @PathVariable UUID id,
+            @RequestBody EnergySiteStatusDTO dto
+    ) {
+        return energySiteService.updateStatus(id, dto.status());
     }
 
     @DeleteMapping("/{id}")

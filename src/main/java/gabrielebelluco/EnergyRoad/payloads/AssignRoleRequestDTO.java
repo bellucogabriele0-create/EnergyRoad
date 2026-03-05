@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.payloads.request;
+package gabrielebelluco.EnergyRoad.payloads;
 
 import gabrielebelluco.EnergyRoad.enums.RoleType;
 import jakarta.validation.constraints.NotBlank;

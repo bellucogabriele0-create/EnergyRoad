@@ -72,4 +72,10 @@ public class EnergySiteService {
         return energySiteRepository.save(site);
     }
 
+    public EnergySite updateStatus(UUID id, EnergySiteStatus status) {
+        EnergySite site = getById(id);
+        site.setStatus(status);
+        return energySiteRepository.save(site);
+    }
+
 }

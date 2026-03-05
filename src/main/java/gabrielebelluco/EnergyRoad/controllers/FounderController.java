@@ -1,7 +1,7 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.User;
-import gabrielebelluco.EnergyRoad.payloads.request.AssignRoleRequestDTO;
+import gabrielebelluco.EnergyRoad.payloads.AssignRoleRequestDTO;
 import gabrielebelluco.EnergyRoad.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
