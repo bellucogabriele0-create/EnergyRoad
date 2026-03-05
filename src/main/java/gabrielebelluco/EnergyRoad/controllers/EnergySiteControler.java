@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/site")
@@ -24,6 +25,11 @@ public class EnergySiteControler {
     @GetMapping
     public List<EnergySite> getAll() {
         return energySiteService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public EnergySite getById(@PathVariable UUID id) {
+        return energySiteService.getById(id);
     }
 
     @PostMapping
