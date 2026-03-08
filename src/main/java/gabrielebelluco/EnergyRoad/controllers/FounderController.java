@@ -20,7 +20,7 @@ public class FounderController {
         this.userService = userService;
     }
 
-    @PreAuthorize("hasRole('FOUNDER')")
+    @PreAuthorize("hasAnyAuthority('FOUNDER')")
     @PutMapping("/assign-role")
     public String assignRole(@RequestBody AssignRoleRequestDTO dto) {
         User actionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

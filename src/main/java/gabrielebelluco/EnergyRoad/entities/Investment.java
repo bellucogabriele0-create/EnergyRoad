@@ -3,7 +3,6 @@ package gabrielebelluco.EnergyRoad.entities;
 import gabrielebelluco.EnergyRoad.enums.InvestmentStatus;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,8 +12,8 @@ public class Investment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID investmentId;
-    @Column(nullable = false, scale = 2)
-    private BigDecimal amount;
+    @Column(nullable = false)
+    private int amount;
     private LocalDateTime investmentDate;
     @Enumerated(EnumType.STRING)
     private InvestmentStatus status;
@@ -22,29 +21,29 @@ public class Investment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "energy_site_id")
+    @JoinColumn(name = "energy_site_id", nullable = false)
     private EnergySite energySite;
 
     public Investment() {
     }
 
-    public Investment(BigDecimal amount, LocalDateTime investmentDate, InvestmentStatus status, User user, EnergySite energySite) {
-        this.amount = amount;
-        this.investmentDate = investmentDate;
+    public Investment(InvestmentStatus status, User user, EnergySite energySite, LocalDateTime investmentDate, int amount) {
         this.status = status;
         this.user = user;
         this.energySite = energySite;
+        this.investmentDate = investmentDate;
+        this.amount = amount;
     }
 
     public UUID getInvestmentId() {
         return investmentId;
     }
 
-    public BigDecimal getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

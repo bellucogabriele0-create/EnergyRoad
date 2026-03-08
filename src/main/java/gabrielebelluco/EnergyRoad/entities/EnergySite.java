@@ -22,6 +22,10 @@ public class EnergySite {
     private BigDecimal latitude;
     @Column(nullable = false, precision = 9, scale = 6)
     private BigDecimal longitude;
+    @Column(nullable = false)
+    private int targetAmount;
+    @Column(nullable = false)
+    private int totalInvested = 0;
     @Enumerated(EnumType.STRING)
     private EnergySiteType type;
     @Enumerated(EnumType.STRING)
@@ -32,15 +36,36 @@ public class EnergySite {
     public EnergySite() {
     }
 
-    public EnergySite(String description, String name, BigDecimal latitude, BigDecimal longitude, EnergySiteType type, EnergySiteStatus status, String image) {
-        this.description = description;
+    public EnergySite(String name, String description, BigDecimal latitude, BigDecimal longitude, int targetAmount, EnergySiteType type, EnergySiteStatus status, String image) {
         this.name = name;
+        this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.targetAmount = targetAmount;
         this.type = type;
         this.status = status;
         this.image = image;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public int getTargetAmount() {
+        return targetAmount;
+    }
+
+    public void setTargetAmount(int targetAmount) {
+        this.targetAmount = targetAmount;
+    }
+
+    public int getTotalInvested() {
+        return totalInvested;
+    }
+
+    public void setTotalInvested(int totalInvested) {
+        this.totalInvested = totalInvested;
+    }
+
+    public void addInvestment(int amount) {
+        this.totalInvested += amount;
     }
 
     public UUID getEnergySiteId() {

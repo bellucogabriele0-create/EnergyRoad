@@ -41,6 +41,10 @@ public class EnergySiteService {
         energySiteRepository.delete(site);
     }
 
+    public EnergySite save(EnergySite site) {
+        return energySiteRepository.save(site);
+    }
+
     public EnergySite create(EnergySiteDTO dto) throws BadRequestException {
         if (energySiteRepository.existsByName(dto.name())) {
             throw new BadRequestException("questo sito è già esistente");
@@ -49,10 +53,11 @@ public class EnergySiteService {
             throw new BadRequestException("esiste già un sito in queste coordinate");
         }
         EnergySite energySite = new EnergySite(
-                dto.description(),
                 dto.name(),
+                dto.description(),
                 dto.latitude(),
                 dto.longitude(),
+                dto.targetAmount(),
                 dto.energySiteType(),
                 EnergySiteStatus.IN_SVILUPPO,
                 dto.image()

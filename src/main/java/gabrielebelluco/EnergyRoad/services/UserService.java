@@ -53,7 +53,7 @@ public class UserService {
         User u = new User();
         u.setFirstname(payload.getFirstname());
         u.setLastname(payload.getLastname());
-        u.setEmail(payload.getEmail());
+        u.setEmail(payload.getEmail().trim().toLowerCase());
         u.setPassword(passwordEncoder.encode(payload.getPassword()));
         Role ruoloUser = roleRepository.findByRoleType(RoleType.USER)
                 .orElseThrow(() -> new NotFoundException("Ruolo USER non trovato nel db"));
@@ -70,7 +70,7 @@ public class UserService {
         User u = new User();
         u.setFirstname(payload.getFirstname());
         u.setLastname(payload.getLastname());
-        u.setEmail(payload.getEmail());
+        u.setEmail(payload.getEmail().trim().toLowerCase());
         u.setPassword(passwordEncoder.encode(payload.getPassword()));
         Role roleInvestor = roleRepository.findByRoleType(RoleType.INVESTOR)
                 .orElseThrow(() -> new NotFoundException("ruolo INVESTOR non trovato"));
@@ -87,7 +87,7 @@ public class UserService {
         User u = new User();
         u.setFirstname(payload.getFirstname());
         u.setLastname(payload.getLastname());
-        u.setEmail(payload.getEmail());
+        u.setEmail(payload.getEmail().trim().toLowerCase());
         u.setPassword(passwordEncoder.encode(payload.getPassword()));
         Role founderRole = roleRepository.findByRoleType(RoleType.FOUNDER)
                 .orElseThrow(() -> new NotFoundException("ruolo FOUNDER non trovato"));

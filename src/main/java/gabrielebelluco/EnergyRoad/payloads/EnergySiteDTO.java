@@ -3,6 +3,7 @@ package gabrielebelluco.EnergyRoad.payloads;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -17,6 +18,8 @@ public record EnergySiteDTO(
         BigDecimal latitude,
         @NotNull(message = "dai una longitudine al sito ")
         BigDecimal longitude,
+        @Positive(message = "devi inserire un target da raggiungere che sia maggiore di zero")
+        int targetAmount,
         @NotNull(message = "scgli un tipo di sito")
         EnergySiteType energySiteType,
         String image

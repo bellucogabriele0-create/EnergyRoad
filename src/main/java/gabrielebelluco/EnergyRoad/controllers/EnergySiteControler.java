@@ -54,7 +54,7 @@ public class EnergySiteControler {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN','FOUNDER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
     public EnergySite update(
             @PathVariable UUID id,
             @RequestBody EnergySiteDTO dto
@@ -63,7 +63,7 @@ public class EnergySiteControler {
     }
 
     @PatchMapping("/{id}/status")
-    //@PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
     public EnergySite updateStatus(
             @PathVariable UUID id,
             @RequestBody EnergySiteStatusDTO dto
@@ -72,7 +72,7 @@ public class EnergySiteControler {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN','FOUNDER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable UUID id) {
         energySiteService.delete(id);
