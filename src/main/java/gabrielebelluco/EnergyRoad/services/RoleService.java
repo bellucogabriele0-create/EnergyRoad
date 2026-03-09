@@ -55,7 +55,6 @@ public class RoleService {
 
     @Transactional
     public Role addRole(RoleDTO dto) throws BadRequestException {
-        // Verifica che il ruolo non esista già
         if (roleRepository.existsByRoleType(dto.roleType())) {
             throw new BadRequestException("è già esiste il ruolo: " + dto.roleType());
         }

@@ -44,6 +44,8 @@ public class InvestmentService {
         site.addInvestment(dto.amount());
         if (site.getTotalInvested() >= site.getTargetAmount()) {
             investment.setStatus(InvestmentStatus.COMPLETTATO);
+            throw new IllegalArgumentException("questo sito ha già raggiunto il target di investimento");
+
         }
         energySiteService.save(site);
         return investmentRepository.save(investment);

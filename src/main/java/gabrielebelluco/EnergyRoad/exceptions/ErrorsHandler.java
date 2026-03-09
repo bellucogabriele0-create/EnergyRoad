@@ -46,6 +46,6 @@ public class ErrorsHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorsDTO handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
-        return new ErrorsDTO("Il tipo cliente deve essere USER o INVESTOR ", LocalDateTime.now());
+        return new ErrorsDTO("payload JSON non valido", LocalDateTime.now());
     }
 }
