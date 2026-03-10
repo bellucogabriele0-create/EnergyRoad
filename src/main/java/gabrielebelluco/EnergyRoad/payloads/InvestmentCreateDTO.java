@@ -10,6 +10,6 @@ public record InvestmentCreateDTO(
         UUID energySiteId,
         @NotNull(message = "inserisci un importo")
         @Positive(message = "l'importo deve essere maggiore di 0 ")
-        int amount
+        Integer amount
 ) {
 }

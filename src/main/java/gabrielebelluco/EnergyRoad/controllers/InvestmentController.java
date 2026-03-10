@@ -1,6 +1,6 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
-import gabrielebelluco.EnergyRoad.entities.Investment;
+import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.InvestmentStatus;
 import gabrielebelluco.EnergyRoad.payloads.InvestmentCreateDTO;
 import gabrielebelluco.EnergyRoad.payloads.InvestmentResponseDTO;
@@ -8,6 +8,7 @@ import gabrielebelluco.EnergyRoad.services.InvestmentService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,6 @@ import java.util.UUID;
 @RequestMapping("/investments")
 @PreAuthorize("hasAnyAuthority('INVESTOR','FOUNDER','ADMIN')")
 public class InvestmentController {
-
     private final InvestmentService investmentService;
 
     public InvestmentController(InvestmentService investmentService) {
@@ -25,31 +25,26 @@ public class InvestmentController {
     }
 
     @GetMapping("/user/{userId}")
-    @PreAuthorize("hasAnyAuthority('FOUNDER','ADMIN','INVESTOR')")
     public List<InvestmentResponseDTO> getUserInvestments(@PathVariable UUID userId) {
-        return investmentService.getUserInvestments(userId)
-                .stream()
-                .map(i -> new InvestmentResponseDTO(
-                        i.getInvestmentId(),
-                        i.getAmount(),
-                        i.getStatus(),
-                        i.getEnergySite().getEnergySiteId()
-                ))
+        return investmentService.getUserInvestments(userId).stream()
+                .map(InvestmentResponseDTO::from)
                 .toList();
     }
 
     @GetMapping("/site/{energySiteId}")
-    @PreAuthorize("hasAnyAuthority('FOUNDER', 'ADMIN', 'INVESTOR')")
     public List<InvestmentResponseDTO> getEnergySiteInvestments(@PathVariable UUID energySiteId) {
-        return investmentService.getEnergySiteInvestments(energySiteId)
-                .stream()
-                .map(i -> new InvestmentResponseDTO(
-                        i.getInvestmentId(),
-                        i.getAmount(),
-                        i.getStatus(),
-                        i.getEnergySite().getEnergySiteId()
-                ))
+        return investmentService.getEnergySiteInvestments(energySiteId).stream()
+                .map(InvestmentResponseDTO::from)
                 .toList();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public InvestmentResponseDTO createInvestment(
+            @RequestBody @Valid InvestmentCreateDTO dto,
+            @AuthenticationPrincipal User currentUser
+    ) {
+        return InvestmentResponseDTO.from(investmentService.createInvestment(currentUser.getUserId(), dto));
     }
 
     @PatchMapping("/{investmentId}/status")
@@ -58,34 +53,10 @@ public class InvestmentController {
             @PathVariable UUID investmentId,
             @RequestParam InvestmentStatus status
     ) {
-        var inv = investmentService.updateStatus(investmentId, status);
-        return new InvestmentResponseDTO(
-                inv.getInvestmentId(),
-                inv.getAmount(),
-                inv.getStatus(),
-                inv.getEnergySite().getEnergySiteId()
-        );
-    }
-
-    @PostMapping("/{userId}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'FOUNDER', 'INVESTOR')")
-    @ResponseStatus(HttpStatus.CREATED)
-    public InvestmentResponseDTO createInvestment(
-            @PathVariable UUID userId,
-            @RequestBody @Valid InvestmentCreateDTO dto
-    ) {
-        Investment investment = investmentService.createInvestment(userId, dto);
-
-        return new InvestmentResponseDTO(
-                investment.getInvestmentId(),
-                investment.getAmount(),
-                investment.getStatus(),
-                investment.getEnergySite().getEnergySiteId()
-        );
+        return InvestmentResponseDTO.from(investmentService.updateStatus(investmentId, status));
     }
 
     @GetMapping("/{userId}/sites/{siteId}/total")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'FOUNDER', 'INVESTOR')")
     public int getUserInvestmentInSite(@PathVariable UUID userId, @PathVariable UUID siteId) {
         return investmentService.getUserInvestmentInSite(userId, siteId);
     }

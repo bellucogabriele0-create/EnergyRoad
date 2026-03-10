@@ -4,7 +4,6 @@ import gabrielebelluco.EnergyRoad.entities.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +13,6 @@ public interface NewsRepository extends JpaRepository<News, UUID> {
 
     boolean existsByTitle(String title);
 
-    List<News> findAllByOrderByNewsCreatedAtDesc(LocalDate newsCreatedAt);
+    List<News> findAllByOrderByNewsCreatedAtDesc();
 
 }

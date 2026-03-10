@@ -1,7 +1,9 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
+import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.payloads.LoginDTO;
 import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.UserResponseDTO;
 import gabrielebelluco.EnergyRoad.services.AuthService;
 import gabrielebelluco.EnergyRoad.services.UserService;
 import jakarta.validation.Valid;
@@ -21,16 +23,8 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public String register(@RequestBody @Valid UserCreateDTO payload) {
-        userService.createUser(payload);
-        return "Registrazione avvenuta con successo";
-    }
-
-    @PostMapping("/register-investor")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String registerInvestor(@RequestBody @Valid UserCreateDTO payload) {
-        userService.createInvestor(payload);
-        return "Registrazione investor avvenuta con successo";
+    public UserResponseDTO register(@RequestBody @Valid UserCreateDTO payload) {
+        return UserResponseDTO.from(userService.createUser(payload, RoleType.USER));
     }
 
     @PostMapping("/login")

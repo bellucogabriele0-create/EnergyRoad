@@ -65,7 +65,7 @@ public class EnergySiteService {
         return energySiteRepository.save(energySite);
     }
 
-    public EnergySite update(UUID id, EnergySiteDTO dto) throws BadRequestException {
+    public EnergySite update(UUID id, EnergySiteDTO dto) {
         EnergySite site = getById(id);
         site.setName(dto.name());
         site.setDescription(dto.description());
@@ -73,7 +73,7 @@ public class EnergySiteService {
         site.setLongitude(dto.longitude());
         site.setType(dto.energySiteType());
         site.setImage(dto.image());
-
+        site.setTargetAmount(dto.targetAmount());
         return energySiteRepository.save(site);
     }
 

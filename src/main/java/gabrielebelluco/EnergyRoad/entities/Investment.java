@@ -12,7 +12,7 @@ public class Investment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID investmentId;
-    @Column(nullable = false)
+    @Column(nullable = false, scale = 2)
     private int amount;
     private LocalDateTime investmentDate;
     @Enumerated(EnumType.STRING)

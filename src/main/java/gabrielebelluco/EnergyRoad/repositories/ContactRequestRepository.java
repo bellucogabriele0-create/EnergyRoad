@@ -1,10 +1,10 @@
 package gabrielebelluco.EnergyRoad.repositories;
 
 import gabrielebelluco.EnergyRoad.entities.ContactRequest;
+import gabrielebelluco.EnergyRoad.enums.ContactRequestType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,9 +15,9 @@ public interface ContactRequestRepository extends JpaRepository<ContactRequest, 
 
     List<ContactRequest> findByContactRequestName(String contactRequestName);
 
-    List<ContactRequest> findByContactRequestType(String contactRequestType);
+    List<ContactRequest> findByContactRequestType(ContactRequestType contactRequestType);
 
-    List<ContactRequest> findAllByOrderByCreatedAtDesc(LocalDate contactRequestCreatedAt);
+    List<ContactRequest> findAllByOrderByCreatedAtDesc();
 
-    List<ContactRequest> findAllByOrderByCreatedAtAsc(LocalDate contactRequestCreatedAt);
+    List<ContactRequest> findAllByOrderByCreatedAtAsc();
 }

@@ -1,12 +1,15 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.User;
+import gabrielebelluco.EnergyRoad.enums.RoleType;
+import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.UserResponseDTO;
 import gabrielebelluco.EnergyRoad.services.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -20,21 +23,26 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable UUID id) {
-        return userService.getById(id);
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    public UserResponseDTO getById(@PathVariable UUID id) {
+        return UserResponseDTO.from(userService.findById(id));
     }
 
     @GetMapping("/email/{email}")
-    public User getByEmail(@PathVariable String email) {
-        return userService.findByEmail(email);
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER')")
+    public UserResponseDTO getByEmail(@PathVariable String email) {
+        return UserResponseDTO.from(userService.findByEmail(email));
     }
 
     @GetMapping("/me")
-    public User getCurrentUser() {
-        return (User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
+    public UserResponseDTO getCurrentUser(@AuthenticationPrincipal User currentUser) {
+        return UserResponseDTO.from(currentUser);
     }
 
+    @PostMapping("/create-investor")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FOUNDER','USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponseDTO createInvestor(@RequestBody @Valid UserCreateDTO payload) {
+        return UserResponseDTO.from(userService.createUser(payload, RoleType.INVESTOR));
+    }
 }

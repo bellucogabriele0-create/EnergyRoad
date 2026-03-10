@@ -1,6 +1,7 @@
 package gabrielebelluco.EnergyRoad.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +29,7 @@ public class User implements UserDetails {
     private String avatarUrl;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Order> orders;
     @OneToMany(mappedBy = "user")
     private List<Investment> investments;
@@ -137,8 +139,8 @@ public class User implements UserDetails {
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", createdAt=" + createdAt +
-                ", orders=" + orders +
-                ", investments=" + investments +
+//                ", orders=" + orders +
+//                ", investments=" + investments +
                 '}';
     }
 

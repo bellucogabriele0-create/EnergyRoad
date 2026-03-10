@@ -1,7 +1,8 @@
 package gabrielebelluco.EnergyRoad.repositories;
 
-import gabrielebelluco.EnergyRoad.enums.OrderStatus;
 import gabrielebelluco.EnergyRoad.entities.Order;
+import gabrielebelluco.EnergyRoad.entities.User;
+import gabrielebelluco.EnergyRoad.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,8 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     boolean existsById(UUID id);
 
     boolean existsByOrderDate(LocalDate orderDate);
+
+    List<Order> findByUser(User user);
 
     List<Order> findByOrderStatus(OrderStatus orderStatus);
 

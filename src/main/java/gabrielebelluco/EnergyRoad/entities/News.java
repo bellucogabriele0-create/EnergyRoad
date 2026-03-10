@@ -24,7 +24,6 @@ public class News {
     }
 
     public News(String title, String content, LocalDate newsCreatedAt, User createdBy) {
-
         this.title = title;
         this.content = content;
         this.newsCreatedAt = newsCreatedAt;
@@ -59,6 +58,7 @@ public class News {
         return newsCreatedAt;
     }
 
+    
     public void setNewsCreatedAt(LocalDate newsCreatedAt) {
         this.newsCreatedAt = newsCreatedAt;
     }

@@ -32,14 +32,14 @@ public class RoleService {
                 -> new NotFoundException("Ruolo non trovato con id: " + ruoloId));
     }
 
-    public Role saveRuolo(RoleDTO dto) {
-        if (roleRepository.existsByRoleType(dto.roleType()))
-            throw new IllegalArgumentException("Il ruolo " + dto.roleType() + " esiste già");
-        Role savedRole = new Role();
-        savedRole.setRoleType(dto.roleType());
-        System.out.println("è stato salvato con successo ruolo di: " + dto.roleType());
-        return roleRepository.save(savedRole);
-    }
+//    public Role saveRuolo(RoleDTO dto) {
+//        if (roleRepository.existsByRoleType(dto.roleType()))
+//            throw new IllegalArgumentException("Il ruolo " + dto.roleType() + " esiste già");
+//        Role savedRole = new Role();
+//        savedRole.setRoleType(dto.roleType());
+//        System.out.println("è stato salvato con successo ruolo di: " + dto.roleType());
+//        return roleRepository.save(savedRole);
+//    }
 
     public Role findByIdAndUpdate(UUID ruoloId, RoleDTO dto) {
         Role found = this.findById(ruoloId);
