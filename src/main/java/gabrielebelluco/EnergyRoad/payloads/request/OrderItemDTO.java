@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.payloads;
+package gabrielebelluco.EnergyRoad.payloads.request;
 
 import gabrielebelluco.EnergyRoad.entities.OrderItem;
 import jakarta.validation.constraints.NotNull;

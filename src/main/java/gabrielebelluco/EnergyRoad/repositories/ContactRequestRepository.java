@@ -1,6 +1,5 @@
 package gabrielebelluco.EnergyRoad.repositories;
 
-import gabrielebelluco.EnergyRoad.entities.ContactRequest;
 import gabrielebelluco.EnergyRoad.enums.ContactRequestType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

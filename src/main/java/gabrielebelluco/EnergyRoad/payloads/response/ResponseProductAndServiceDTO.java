@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.payloads;
+package gabrielebelluco.EnergyRoad.payloads.response;
 
 import java.math.BigDecimal;
 import java.util.UUID;

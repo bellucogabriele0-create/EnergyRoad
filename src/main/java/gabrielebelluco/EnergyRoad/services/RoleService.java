@@ -3,7 +3,7 @@ package gabrielebelluco.EnergyRoad.services;
 import gabrielebelluco.EnergyRoad.entities.Role;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.payloads.RoleDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.RoleDTO;
 import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;

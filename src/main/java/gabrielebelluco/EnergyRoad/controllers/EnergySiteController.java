@@ -3,9 +3,9 @@ package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
-import gabrielebelluco.EnergyRoad.payloads.EnergySiteDTO;
-import gabrielebelluco.EnergyRoad.payloads.EnergySiteResponseDTO;
-import gabrielebelluco.EnergyRoad.payloads.EnergySiteStatusDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.EnergySiteDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.EnergySiteStatusDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.EnergySiteResponseDTO;
 import gabrielebelluco.EnergyRoad.services.EnergySiteService;
 import jakarta.validation.Valid;
 import org.apache.coyote.BadRequestException;

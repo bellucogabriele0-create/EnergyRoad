@@ -1,9 +1,9 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
-import gabrielebelluco.EnergyRoad.payloads.InvestmentResponseDTO;
-import gabrielebelluco.EnergyRoad.payloads.OrderDTO;
-import gabrielebelluco.EnergyRoad.payloads.PayInvestmentDTO;
-import gabrielebelluco.EnergyRoad.payloads.PayOrderDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.OrderDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.PayInvestmentDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.PayOrderDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.InvestmentResponseDTO;
 import gabrielebelluco.EnergyRoad.services.InvestmentService;
 import gabrielebelluco.EnergyRoad.services.OrderService;
 import gabrielebelluco.EnergyRoad.services.PaymentService;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/payments")
-@PreAuthorize("hasAnyAuthority('INVESTOR','ADMIN','FOUNDER')")
+@PreAuthorize("hasAnyAuthority('USER','INVESTOR','ADMIN','FOUNDER')")
 public class PaymentController {
 
     private final PaymentService paymentService;

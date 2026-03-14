@@ -2,7 +2,7 @@ package gabrielebelluco.EnergyRoad.services;
 
 import gabrielebelluco.EnergyRoad.entities.ProductCategory;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.payloads.CreateProductCategoryDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.CreateProductCategoryDTO;
 import gabrielebelluco.EnergyRoad.repositories.ProductCategoryRepository;
 import org.springframework.stereotype.Service;
 

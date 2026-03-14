@@ -1,8 +1,8 @@
 package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.ProductCategory;
-import gabrielebelluco.EnergyRoad.payloads.CreateProductCategoryDTO;
-import gabrielebelluco.EnergyRoad.payloads.ResponseProductCategoryDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.CreateProductCategoryDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.ResponseProductCategoryDTO;
 import gabrielebelluco.EnergyRoad.services.ProductCategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

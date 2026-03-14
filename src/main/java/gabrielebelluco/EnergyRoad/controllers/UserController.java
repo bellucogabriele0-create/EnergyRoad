@@ -2,8 +2,8 @@ package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
-import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
-import gabrielebelluco.EnergyRoad.payloads.UserResponseDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.UserResponseDTO;
 import gabrielebelluco.EnergyRoad.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -37,6 +38,14 @@ public class UserController {
     @GetMapping("/me")
     public UserResponseDTO getCurrentUser(@AuthenticationPrincipal User currentUser) {
         return UserResponseDTO.from(currentUser);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasAuthority('FOUNDER')")
+    public List<UserResponseDTO> getAllUsers() {
+        return userService.findAll().stream()
+                .map(UserResponseDTO::from)
+                .toList();
     }
 
     @PostMapping("/create-investor")

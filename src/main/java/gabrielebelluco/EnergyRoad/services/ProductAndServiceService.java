@@ -3,8 +3,8 @@ package gabrielebelluco.EnergyRoad.services;
 import gabrielebelluco.EnergyRoad.entities.ProductAndService;
 import gabrielebelluco.EnergyRoad.entities.ProductCategory;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.payloads.CreateProductAndServiceDTO;
-import gabrielebelluco.EnergyRoad.payloads.ResponseProductAndServiceDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.CreateProductAndServiceDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.ResponseProductAndServiceDTO;
 import gabrielebelluco.EnergyRoad.repositories.ProductAndServiceRepository;
 import org.springframework.stereotype.Service;
 

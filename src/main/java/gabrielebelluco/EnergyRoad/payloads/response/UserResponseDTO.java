@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.payloads;
+package gabrielebelluco.EnergyRoad.payloads.response;
 
 import gabrielebelluco.EnergyRoad.entities.User;
 

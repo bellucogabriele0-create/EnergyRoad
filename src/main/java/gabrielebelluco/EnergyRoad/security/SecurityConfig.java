@@ -38,11 +38,11 @@ public class SecurityConfig {
         httpSecurity.formLogin(fl -> fl.disable());
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.sessionManagement(sessions -> sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
-        //   /auth/** pubblico, tutto il resto richiede token
         httpSecurity.authorizeHttpRequests(request -> request
                 .requestMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated());
+                .requestMatchers("/site", "/products", "/categories").permitAll()
+                .anyRequest().authenticated()
+        );
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }

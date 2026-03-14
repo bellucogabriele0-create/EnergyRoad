@@ -4,7 +4,7 @@ import gabrielebelluco.EnergyRoad.entities.EnergySite;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteStatus;
 import gabrielebelluco.EnergyRoad.enums.EnergySiteType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.payloads.EnergySiteDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.EnergySiteDTO;
 import gabrielebelluco.EnergyRoad.repositories.EnergySiteRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;

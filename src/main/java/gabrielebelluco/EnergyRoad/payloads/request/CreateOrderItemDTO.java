@@ -1,4 +1,4 @@
-package gabrielebelluco.EnergyRoad.payloads;
+package gabrielebelluco.EnergyRoad.payloads.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

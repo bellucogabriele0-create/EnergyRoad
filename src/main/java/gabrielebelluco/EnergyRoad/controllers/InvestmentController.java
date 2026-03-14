@@ -2,8 +2,8 @@ package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.InvestmentStatus;
-import gabrielebelluco.EnergyRoad.payloads.InvestmentCreateDTO;
-import gabrielebelluco.EnergyRoad.payloads.InvestmentResponseDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.InvestmentCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.response.InvestmentResponseDTO;
 import gabrielebelluco.EnergyRoad.services.InvestmentService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

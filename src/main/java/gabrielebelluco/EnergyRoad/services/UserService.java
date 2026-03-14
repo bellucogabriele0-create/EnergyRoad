@@ -4,13 +4,14 @@ import gabrielebelluco.EnergyRoad.entities.Role;
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
 import gabrielebelluco.EnergyRoad.exceptions.NotFoundException;
-import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.UserCreateDTO;
 import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
 import gabrielebelluco.EnergyRoad.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,6 +30,10 @@ public class UserService {
 
     public User findById(UUID id) {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("Utente non trovato con id: " + id));
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public User findByEmail(String email) {

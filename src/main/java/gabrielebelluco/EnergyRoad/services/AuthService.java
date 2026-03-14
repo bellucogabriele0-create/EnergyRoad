@@ -2,7 +2,7 @@ package gabrielebelluco.EnergyRoad.services;
 
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.exceptions.UnauthorizedException;
-import gabrielebelluco.EnergyRoad.payloads.LoginDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.LoginDTO;
 import gabrielebelluco.EnergyRoad.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -2,8 +2,8 @@ package gabrielebelluco.EnergyRoad.controllers;
 
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.OrderStatus;
-import gabrielebelluco.EnergyRoad.payloads.CreateOrderRequestDTO;
-import gabrielebelluco.EnergyRoad.payloads.OrderDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.CreateOrderRequestDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.OrderDTO;
 import gabrielebelluco.EnergyRoad.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

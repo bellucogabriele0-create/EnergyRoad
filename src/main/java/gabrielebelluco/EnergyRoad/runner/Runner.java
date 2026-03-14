@@ -4,7 +4,7 @@ package gabrielebelluco.EnergyRoad.runner;
 import gabrielebelluco.EnergyRoad.entities.Role;
 import gabrielebelluco.EnergyRoad.entities.User;
 import gabrielebelluco.EnergyRoad.enums.RoleType;
-import gabrielebelluco.EnergyRoad.payloads.UserCreateDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.UserCreateDTO;
 import gabrielebelluco.EnergyRoad.repositories.RoleRepository;
 import gabrielebelluco.EnergyRoad.services.UserService;
 import org.springframework.beans.factory.annotation.Value;

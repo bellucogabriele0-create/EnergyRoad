@@ -48,6 +48,18 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return new AntPathMatcher().match("/auth/**", request.getServletPath());
+        AntPathMatcher matcher = new AntPathMatcher();
+        String path = request.getServletPath();
+        String method = request.getMethod();
+        if ("OPTIONS".equalsIgnoreCase(method)) return true;
+        if (matcher.match("/auth/**", path)) return true;
+        if ("GET".equalsIgnoreCase(method)) {
+            return matcher.match("/site", path)
+                    || matcher.match("/site/**", path)
+                    || matcher.match("/products", path)
+                    || matcher.match("/categories", path);
+        }
+
+        return false;
     }
 }

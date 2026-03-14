@@ -1,7 +1,7 @@
 package gabrielebelluco.EnergyRoad.exceptions;
 
-import gabrielebelluco.EnergyRoad.payloads.ErrorsDTO;
-import gabrielebelluco.EnergyRoad.payloads.ErrorsWithListDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.ErrorsDTO;
+import gabrielebelluco.EnergyRoad.payloads.request.ErrorsWithListDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
