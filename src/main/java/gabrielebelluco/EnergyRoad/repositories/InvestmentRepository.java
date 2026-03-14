@@ -16,7 +16,6 @@ public interface InvestmentRepository extends JpaRepository<Investment, UUID> {
 
     List<Investment> findByEnergySite(EnergySite energySite);
 
-    boolean existsByUserAndEnergySite(User user, EnergySite energySite);
 
     Optional<Investment> findByUserAndEnergySite(User user, EnergySite energySite);
 }

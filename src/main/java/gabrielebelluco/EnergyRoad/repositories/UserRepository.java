@@ -1,12 +1,9 @@
 package gabrielebelluco.EnergyRoad.repositories;
 
 import gabrielebelluco.EnergyRoad.entities.User;
-import gabrielebelluco.EnergyRoad.enums.RoleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,14 +11,9 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
     boolean existsById(UUID id);
 
-    Optional<User> findByEmail(String email); //TODO da sfruttare per il login
+    Optional<User> findByEmail(String email);
 
-    boolean existsByEmail(String email); //TODO da sfruttare per verifica di duplicati
-
-    List<User> findByRolesRoleType(RoleType roleType);
+    boolean existsByEmail(String email);
 
 
-    List<User> findByFirstnameContainingIgnoreCase(String firstname);
-
-    List<User> findAllByOrderByCreatedAtDesc(LocalDate createdAt);
 }
